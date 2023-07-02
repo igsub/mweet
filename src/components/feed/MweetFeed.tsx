@@ -48,7 +48,7 @@ const MweetFeed = () => {
         {mweets.map(mweet => (
           <ListItem key={`mweet-${mweet.user}-${mweet.createdAt}`}>
             <ListItemPrefix>
-              <Avatar variant="circular" alt="candice" src={mweet.user.picture} />
+              <Avatar variant="circular" src={mweet.user.picture} />
             </ListItemPrefix>
             <div>
             <Typography variant="h6" color="blue-gray">

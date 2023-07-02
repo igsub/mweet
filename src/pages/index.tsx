@@ -7,7 +7,7 @@ import { Typography } from '@material-tailwind/react'
 export default withPageAuthRequired(function Home() {
 
   return (
-      <div className='flex flex-col p-10 w-full'>
+      <div className='flex flex-col w-full'>
         <Typography className="text-3xl mb-4 w-full" variant='h1'>
           Your feed
         </Typography>

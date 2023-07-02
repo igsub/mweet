@@ -7,6 +7,17 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse,
 ) { 
+  if (req.method === 'PUT') {
+    const updatedUser = await prisma.user.update({
+      where: {
+        userId: req.body.userId
+      },
+      data: req.body.userData
+    })
+
+    return res.status(201).json(updatedUser)
+  }
+
   const user = await prisma.user.findUnique({
     where: { userId: req.body.userId }
   })

@@ -7,13 +7,12 @@ const MainLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter()
 
   return (
-    <main
-    >
+    <main>
       <div className="flex">
         <div>
           {router.pathname !== Paths.Login ? <Sidebar /> : null}
         </div>
-        <div className="w-full">
+        <div className="w-full p-10">
           {children}
         </div>
       </div>
