@@ -16,28 +16,14 @@ export default async function handle(
         following: { select : { userId: true } }
       }
     })
-    
-  const mweets = await prisma.mweet.findMany({
-    where: {
-      userId: {
-        in: [...following.map(user => user.following.userId), userId]
-      }
-    },
-    orderBy: {
-      createdAt: 'desc'
-    },
-    select: {
-      user: {
-        select: {
-          name: true,
-          tag: true,
-          picture: true
-        }
-      },
-      text: true,
-      createdAt: true,
-    } 
-  })
   
-  return res.status(201).json(mweets)
+    const usersNotFollowed = await prisma.user.findMany({
+      where: {
+        userId: {
+          notIn: [...following.map(user => user.following.userId), userId]
+        }
+      }
+    })
+
+  return res.status(201).json(usersNotFollowed)
 }

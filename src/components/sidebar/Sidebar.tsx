@@ -17,11 +17,13 @@ import React from 'react'
 import {useRouter} from "next/router";
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { Paths } from "@/types/display/paths";
+import { useMweetUserContext } from "@/contexts/MweetUserContext";
 
 
 
 const Sidebar = () => {
-  const { user, error, isLoading } = useUser()
+  const { isLoading } = useUser()
+  const user = useMweetUserContext()
   const router = useRouter()
 
   const items = [
@@ -55,7 +57,7 @@ const Sidebar = () => {
 		<Card className='flex top-0 left-0 bottom-0 bg-gray-100 rounded-none h-[calc(100vh)] w-[20rem] shadow-[rgba(0,0,0,0.1)_5px_0px_4px_0px]'>
 			<div className='mb-2 p-4'>
 				<Typography variant='h5' className='text-primary'>
-					Mweeter
+					mweeter
 				</Typography>
 			</div>
 			<List>
@@ -76,7 +78,7 @@ const Sidebar = () => {
 							<Avatar src={user?.picture || undefined} alt='avatar' />
               <div className="flex flex-col justify-center">
                 <span>{user?.name || "Unknown"}</span>
-                <span>@Tag</span>
+                <span>{`@${user?.tag}`}</span>
               </div>
 						</div>
 					)}

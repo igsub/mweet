@@ -13,6 +13,7 @@ const postMweet = async ({ user, text }: IPostMweetProps) => {
 
 const getFeedByUser = async (userId: string) => {
   const res = await axios.get(`/api/db/mweet/${userId}`)
+  console.log('feed', res.data)
   return res
 }
 
